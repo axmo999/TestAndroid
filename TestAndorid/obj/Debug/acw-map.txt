@@ -1,0 +1,4 @@
+TestAndorid.MainActivity, TestAndorid;md531df2e8a446479a13d3b1a94882eacde.MainActivity
+TestAndorid.MainActivity, TestAndorid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md531df2e8a446479a13d3b1a94882eacde.MainActivity
+TestAndorid.MainActivity;md531df2e8a446479a13d3b1a94882eacde.MainActivity
+testandorid.MainActivity;md531df2e8a446479a13d3b1a94882eacde.MainActivity
