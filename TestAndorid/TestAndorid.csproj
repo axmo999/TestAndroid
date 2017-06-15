@@ -56,6 +56,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
+    <Reference Include="SharpCifs.Std">
+      <HintPath>..\packages\SharpCifs.Std.0.2.6\lib\netstandard1.3\SharpCifs.Std.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />

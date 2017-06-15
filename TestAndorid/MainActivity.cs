@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System;
 using System.IO;
 using System.Text;
+using SharpCifs.Smb;
 
 namespace TestAndorid
 {
@@ -45,6 +46,7 @@ namespace TestAndorid
 
         private void button1_onClick(object sender, EventArgs e)
         {
+            this.ReadCSV();
             Toast.MakeText(this, "Hello,Xamarin.Android", ToastLength.Long).Show();
         }
 
@@ -71,8 +73,17 @@ namespace TestAndorid
 
         public void ReadCSV()
         {
-			using (var r = new StreamReader("sample.csv", Encoding.GetEncoding("SHIFT_JIS")))
-			using (var csv = new CsvHelper.CsvReader(r))
+            var file = new SmbFile("smb://admin:admin@192.168.1.201/public/201706_0043108.txt");
+			var readStream = file.GetInputStream();
+			var buffer = new byte[1024 * 8];
+			var memStream = new MemoryStream();
+			int size;
+			while ((size = readStream.Read(buffer, 0, buffer.Length)) > 0)
+				memStream.Write(buffer, 0, size);
+
+
+			//using (var r = new StreamReader("sample.csv", Encoding.GetEncoding("SHIFT_JIS")))
+			using (var csv = new CsvHelper.CsvReader(memStream))
 			{
 				// ヘッダーはないCSV
 				csv.Configuration.HasHeaderRecord = false;
