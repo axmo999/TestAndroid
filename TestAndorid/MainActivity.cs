@@ -84,7 +84,7 @@ namespace TestAndorid
 				// 出力
 				foreach (var record in records)
 				{
-					Console.WriteLine("{0}/{1}/{2}", record.Date, record.ArrivalTime, record.LeaveTime);
+					Console.WriteLine("{0}/{1}/{2}/{3}", record.Date, record.ArrivalTime, record.LeaveTime, record.Note);
 				}
 			}
         }
