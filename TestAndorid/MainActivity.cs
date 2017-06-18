@@ -13,6 +13,7 @@ namespace TestAndorid
     public class MainActivity : Activity
     {
         TextView text1;
+        TextView text3;
         Task _timer;
 
         protected override void OnCreate(Bundle bundle)
@@ -74,16 +75,9 @@ namespace TestAndorid
         public void ReadCSV()
         {
             var file = new SmbFile("smb://admin:admin@192.168.1.201/public/201706_0043108.txt");
-			var readStream = file.GetInputStream();
-			var buffer = new byte[1024 * 8];
-			var memStream = new MemoryStream();
-			int size;
-			while ((size = readStream.Read(buffer, 0, buffer.Length)) > 0)
-				memStream.Write(buffer, 0, size);
+            TextReader sr = new StreamReader(file.GetInputStream());
 
-
-			//using (var r = new StreamReader("sample.csv", Encoding.GetEncoding("SHIFT_JIS")))
-			using (var csv = new CsvHelper.CsvReader(memStream))
+            using (var csv = new CsvHelper.CsvReader(sr))
 			{
 				// ヘッダーはないCSV
 				csv.Configuration.HasHeaderRecord = false;
@@ -92,10 +86,15 @@ namespace TestAndorid
 				// データを読み出し
 				var records = csv.GetRecords<Record>();
 
+                text3 = FindViewById<TextView>(Resource.Id.textView3);
+
+                text3.Text = records.ToString();
+
 				// 出力
 				foreach (var record in records)
 				{
-					Console.WriteLine("{0}/{1}/{2}/{3}", record.Date, record.ArrivalTime, record.LeaveTime, record.Note);
+					//Console.WriteLine("{0}/{1}/{2}/{3}", record.Date, record.ArrivalTime, record.LeaveTime, record.Note);
+                    //Toast.MakeText(this, record.Date.ToString(), ToastLength.Long).Show();
 				}
 			}
         }

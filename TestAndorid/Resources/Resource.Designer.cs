@@ -69,6 +69,9 @@ namespace TestAndorid
 			// aapt resource value: 0x7f050002
 			public const int textView2 = 2131034114;
 			
+			// aapt resource value: 0x7f050003
+			public const int textView3 = 2131034115;
+			
 			static Id()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
