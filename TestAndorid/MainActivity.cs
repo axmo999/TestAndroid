@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using System.Text;
 using SharpCifs.Smb;
+using System.Linq;
 
 namespace TestAndorid
 {
@@ -84,11 +85,14 @@ namespace TestAndorid
 				// 先ほど作ったマッピングルールを登録
 				csv.Configuration.RegisterClassMap<CsvMapper>();
 				// データを読み出し
-				var records = csv.GetRecords<Record>();
+				var records = csv.GetRecords<Record>().ToList();
 
                 text3 = FindViewById<TextView>(Resource.Id.textView3);
+                string today = DateTime.Today.ToString("yyyy/mm/dd");
 
-                text3.Text = records.ToString();
+                var record1 = records.FirstOrDefault(record => record.Date.ToString() == today);
+
+                text3.Text = record1.ArrivalTime.ToString();
 
 				// 出力
 				foreach (var record in records)

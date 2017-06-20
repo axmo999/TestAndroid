@@ -1,16 +1,8 @@
 ﻿<Properties StartupConfiguration="{3C1FD3E4-0AF3-4531-8C3F-DE29FE94D5BA}|Default">
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="TestAndorid/MainActivity.cs">
     <Files>
-      <File FileName="TestAndorid/MainActivity.cs" Line="92" Column="23" />
+      <File FileName="TestAndorid/MainActivity.cs" Line="101" Column="26" />
     </Files>
-    <Pads>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State>
-          <Value>sr</Value>
-          <Value>memStream</Value>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
