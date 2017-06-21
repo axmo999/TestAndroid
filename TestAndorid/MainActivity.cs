@@ -75,7 +75,34 @@ namespace TestAndorid
 
         public void ReadCSV()
         {
-            var file = new SmbFile("smb://admin:admin@192.168.1.201/public/201706_0043108.txt");
+            SharpCifs.Config.SetProperty("jcifs.smb.client.useExtendedSecurity", "true");
+            SharpCifs.Config.SetProperty("jcifs.smb.lmCompatibility", "3");
+
+            SharpCifs.Config.SetProperty("jcifs.netbios.cachePolicy", "180");
+            // cache timeout: cache names
+            SharpCifs.Config.SetProperty("jcifs.netbios.hostname", "windowsphone");
+            SharpCifs.Config.SetProperty("jcifs.netbios.retryCount", "3");
+            SharpCifs.Config.SetProperty("jcifs.netbios.retryTimeout", "5000");
+            // Name query timeout
+            SharpCifs.Config.SetProperty("jcifs.smb.client.responseTimeout", "10000");
+            // increased for NAS where HDD is off!
+
+            string localAddress = "192.168.250.41";
+            SharpCifs.Config.SetProperty("jcifs.netbios.laddr", localAddress);
+            SharpCifs.Config.SetProperty("jcifs.netbios.baddr", "255.255.255.255");
+            SharpCifs.Config.SetProperty("jcifs.resolveOrder", "LMHOSTS,BCAST,DNS");
+            SharpCifs.Config.SetProperty("jcifs.smb.client.laddr", localAddress);
+
+            var auth1 = new NtlmPasswordAuthentication("chubu-ishikai.local", "localadmin", "chubu#82OO");
+
+            //string url = "smb://192.168.250.200/share/test/201706_0043108.txt";
+            string url = "smb://cybozu/wwwroot/Timecard/App_Data/201706_0043108.txt";
+
+            var file = new SmbFile(url, auth1);
+
+            Console.WriteLine($"exists? {file.Exists()}");
+
+            //var file = new SmbFile("smb://admin:admin@192.168.1.201/public/201706_0043108.txt");
             TextReader sr = new StreamReader(file.GetInputStream());
 
             using (var csv = new CsvHelper.CsvReader(sr))
